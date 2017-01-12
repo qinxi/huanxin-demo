@@ -18,7 +18,7 @@ module.exports = React.createClass({
 
         Demo.conn.listen({
             onUpdateMyRoster: function (options) {
-                me.updateMyRoster(options);
+                //me.updateMyRoster(options);
             },
             onUpdateMyGroupList: function (options) {
                 me.updateMyGroupList(options);
@@ -207,7 +207,7 @@ module.exports = React.createClass({
     },
     //for WindosSDK
     updateMyRoster: function (options) {
-        var friends = [];
+        var friends = [{'name':'13084931225'}];
         var roster = eval('(' + options + ')');
         Demo.roster = [];
         for (var i in roster) {
@@ -482,7 +482,7 @@ module.exports = React.createClass({
     getRoster: function (doNotUpdateGroup) {
         var me = this,
             conn = Demo.conn,
-            friends = [],
+            friends = [{'name':'Zero','id':'18610160497','src':'https://treehouse.oss-cn-shanghai.aliyuncs.com/TreeHouse/2016_12_26_03_11_50_644_img_90284533.png'}],
             groups = [];
         if (WebIM.config.isWindowSDK) {
             WebIM.doQuery('{"type":"getRoster"}',

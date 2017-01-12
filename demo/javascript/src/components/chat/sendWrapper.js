@@ -80,10 +80,12 @@ module.exports = React.createClass({
             msg: value,
             to: Demo.selected,
             roomType: chatroom,
+            ext :{"me_ID":"13084931224","me_avatar":"https://treehouse.oss-cn-shanghai.aliyuncs.com/TreeHouse/2016_12_20_03_25_24_614_img_80466762.png","me_nick":"Qx"},
             success: function (id) {
                 me.state.showEmoji && me.setState({showEmoji: false});
             }
         });
+
 
         if (Demo.selectedCate === 'groups') {
             msg.setGroup(Demo.groupType);
