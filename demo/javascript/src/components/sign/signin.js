@@ -65,6 +65,20 @@ module.exports = React.createClass({
         var username = this.refs.name.refs.input.value || (WebIM.config.autoSignIn ? WebIM.config.autoSignInName : '');
         var auth = this.refs.auth.refs.input.value || (WebIM.config.autoSignIn ? WebIM.config.autoSignInPwd : '');
         var type = this.refs.token.refs.input.checked;
+        Demo.ext={"me_ID":"13084931224","me_avatar":"https://treehouse.oss-cn-shanghai.aliyuncs.com/TreeHouse/2016_12_20_03_25_24_614_img_80466762.png","me_nick":"Qx"}
+        var options = {
+            dataType: 'json',//default
+            success: function (data,xhr) {
+                var loginUser  = data.response[0]
+                Demo.ext={"me_ID":loginUser.id,"me_avatar":loginUser.photo.split(',')[0],"me_nick":loginUser.userName}
+            },
+            error: function () {  },
+            type: 'post',//default 'post'
+            url: WebIM.config.apiHost+'/Nq_Shuwu/Server/user/phone.ac?phone='+username,
+            headers: '',//
+            data: {}
+        };
+        WebIM.utils.ajax(options);
         this.signin(username, auth, type);
     },
 

@@ -80,6 +80,7 @@ module.exports = React.createClass({
             msg: value,
             to: Demo.selected,
             roomType: chatroom,
+            ext :Demo.ext,
             success: function (id) {
                 me.state.showEmoji && me.setState({showEmoji: false});
             }

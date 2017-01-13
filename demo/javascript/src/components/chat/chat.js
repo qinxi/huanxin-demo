@@ -18,7 +18,7 @@ module.exports = React.createClass({
 
         Demo.conn.listen({
             onUpdateMyRoster: function (options) {
-                me.updateMyRoster(options);
+                //me.updateMyRoster(options);
             },
             onUpdateMyGroupList: function (options) {
                 me.updateMyGroupList(options);
@@ -523,6 +523,20 @@ module.exports = React.createClass({
             });
         }
         Demo.friends = friends;
+
+        var options = {
+            dataType: 'json',//default
+            success: function (data,xhr) {
+                friends=data;
+                Demo.friends = friends;
+            },
+            error: function () {  },
+            type: 'get',//default 'post'
+            url: WebIM.config.apiHost+'/Nq_Shuwu/Server/user/trueUser.ac',
+            headers: '',//
+            data: ''
+        };
+        WebIM.utils.ajax(options);
     },
 
     getGroup: function () {
@@ -774,7 +788,7 @@ module.exports = React.createClass({
         } else if (chatroom) {
             msg.setGroup(Demo.groupType);
         }
-
+        msg.body.ext=Demo.ext;
         Demo.conn.send(msg.body);
     },
 
@@ -833,7 +847,7 @@ module.exports = React.createClass({
         } else if (chatroom) {
             msg.setGroup(Demo.groupType);
         }
-
+        msg.body.ext=Demo.ext;
         Demo.conn.send(msg.body);
     },
 
@@ -955,7 +969,7 @@ module.exports = React.createClass({
         } else if (chatroom) {
             msg.setGroup(Demo.groupType);
         }
-
+        msg.body.ext=Demo.ext;
         Demo.conn.send(msg.body);
     },
 

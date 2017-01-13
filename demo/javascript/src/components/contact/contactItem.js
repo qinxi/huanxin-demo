@@ -134,6 +134,7 @@ module.exports = React.createClass({
             <div id={this.props.id} className={'webim-contact-item' + className} onClick={this.update}>
                 <Avatar src={this.props.src}/>
                 <div className="webim-contact-info">
+                    <span className="webim-contact-nickName">{this.props.nickname}</span>
                     <span className="webim-contact-username">{this.props.username}</span>
                 </div>
                 <em dangerouslySetInnerHTML={{__html: this.props.brief}}></em>

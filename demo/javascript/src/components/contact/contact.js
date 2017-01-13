@@ -47,8 +47,8 @@ module.exports = React.createClass({
             if (this.props.friends[i].name in this.props.blacklist) {
                 continue;
             }
-            f.push(<Item id={this.props.friends[i].name} cate='friends' key={this.props.friends[i].name} username={this.props.friends[i].name}
-                         update={this.update} cur={this.props.curNode} brief={this.getBrief(this.props.friends[i].name)}/>);
+            f.push(<Item id={this.props.friends[i].phone} cate='friends' key={this.props.friends[i].phone} username={this.props.friends[i].phone} nickname={this.props.friends[i].userName}
+                         update={this.update} cur={this.props.curNode} brief={this.getBrief(this.props.friends[i].name)}  src={this.props.friends[i].photo.split(",")[0]} />);
         }
 
         for (var i = 0; i < this.props.groups.length; i++) {

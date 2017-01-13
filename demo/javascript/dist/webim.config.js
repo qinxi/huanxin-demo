@@ -18,7 +18,7 @@ WebIM.config = {
     /*
      * Application AppKey
      */
-    appkey: 'easemob-demo#chatdemoui',
+    appkey: '1198161024178585#treehouse',
     /*
      * Whether to use wss
      * @parameter {Boolean} true or false
@@ -71,5 +71,7 @@ WebIM.config = {
     /**
      * while http access,use ip directly,instead of ServerName,avoiding DNS problem.
      */
-    isHttpDNS: false
+    isHttpDNS: false,
+
+    apiHost:'http://localhost:8080'
 };
