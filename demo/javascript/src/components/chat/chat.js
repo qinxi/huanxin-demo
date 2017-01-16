@@ -522,8 +522,7 @@ module.exports = React.createClass({
                 }
             });
         }
-        Demo.friends = friends;
-
+        //Demo.friends = friends;
         var options = {
             dataType: 'json',//default
             success: function (data,xhr) {

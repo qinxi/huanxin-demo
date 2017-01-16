@@ -188,7 +188,7 @@ module.exports = React.createClass({
             var jid = this.state.members[i].jid,
                 username = jid.substring(jid.indexOf('_') + 1).split('@')[0],
                 affiliation = this.state.members[i].affiliation;
-
+            //console.log(this.state.members[i])
 
             roomMember.push(<li key={i}>
                 <Avatar src='demo/images/default.png'/>

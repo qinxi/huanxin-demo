@@ -288,6 +288,7 @@ module.exports = {
     },
 
     addToChatRecord: function (msg, type) {
+        //console.log(msg)
         var data = msg.data || msg.msg || '';
         var brief = this.getBrief(data, type);
         this.sentByMe = msg.from === Demo.user;
@@ -362,6 +363,7 @@ module.exports = {
         if (!msg) {
             return;
         }
+        //console.log(msg);
         msg.from = msg.from || Demo.user;
         msg.type = msg.type || 'chat';
 
@@ -372,7 +374,15 @@ module.exports = {
             name = this.sendByMe ? Demo.user : msg.from,
             targetId = this.sentByMe || msg.type !== 'chat' ? msg.to : msg.from,
             targetNode = document.getElementById('wrapper' + targetId),
-            isStranger = !document.getElementById(targetId) && !document.getElementById('wrapper' + targetId);
+            isStranger = !document.getElementById(targetId) && !document.getElementById('wrapper' + targetId),
+            avatar = this.sentByMe?Demo.ext.me_avatar:msg.ext.me_avatar,
+            nickname=this.sentByMe?Demo.ext.me_nick:msg.ext.me_nick;
+
+        //最新消息置顶
+        var userNode = document.getElementById(targetId);
+        var parent = document.getElementById(targetId).parentNode;
+        parent.removeChild(userNode);
+        parent.insertBefore(userNode,parent.firstChild);
 
         // TODO: ios/android client doesn't encodeURIComponent yet
 
@@ -393,7 +403,8 @@ module.exports = {
                     case 'txt':
                         textMsg({
                             wrapper: targetNode,
-                            name: name,
+                            avatar:avatar,
+                            name: nickname,
                             value: brief,
                             error: msg.error,
                             errorText: msg.errorText
@@ -402,7 +413,8 @@ module.exports = {
                     case 'emoji':
                         textMsg({
                             wrapper: targetNode,
-                            name: name,
+                            avatar:avatar,
+                            name: nickname,
                             value: brief,
                             error: msg.error,
                             errorText: msg.errorText
@@ -425,7 +437,8 @@ module.exports = {
                                 imgMsg({
                                     id: msg.id,
                                     wrapper: targetNode,
-                                    name: name,
+                                    avatar:avatar,
+                                    name: nickname,
                                     value: data || msg.url,
                                     error: msg.error,
                                     errorText: msg.errorText
@@ -435,7 +448,8 @@ module.exports = {
                             imgMsg({
                                 id: msg.id,
                                 wrapper: targetNode,
-                                name: name,
+                                avatar:avatar,
+                                name: nickname,
                                 value: data || msg.url,
                                 error: msg.error,
                                 errorText: msg.errorText
@@ -459,7 +473,8 @@ module.exports = {
                                 fileMsg({
                                     id: msg.id,
                                     wrapper: targetNode,
-                                    name: name,
+                                    avatar:avatar,
+                                    name: nickname,
                                     value: data || msg.url,
                                     filename: msg.filename,
                                     error: msg.error,
@@ -469,7 +484,8 @@ module.exports = {
                         } else {
                             audioMsg({
                                 wrapper: targetNode,
-                                name: name,
+                                avatar:avatar,
+                                name: nickname,
                                 value: data || msg.url,
                                 length: msg.length,
                                 id: msg.id,
@@ -497,7 +513,8 @@ module.exports = {
                                 fileMsg({
                                     id: msg.id,
                                     wrapper: targetNode,
-                                    name: name,
+                                    avatar:avatar,
+                                    name: nickname,
                                     value: data || msg.url,
                                     filename: msg.filename,
                                     error: msg.error,
@@ -508,7 +525,8 @@ module.exports = {
                             var option = {
                                 id: msg.id,
                                 wrapper: targetNode,
-                                name: name,
+                                avatar:avatar,
+                                name: nickname,
                                 value: data || msg.url,
                                 filename: msg.filename,
                                 error: msg.error,
@@ -523,7 +541,8 @@ module.exports = {
                     case 'loc':
                         locMsg({
                             wrapper: targetNode,
-                            name: name,
+                            avatar:avatar,
+                            name: nickname,
                             value: data || msg.addr,
                             error: msg.error,
                             errorText: msg.errorText
@@ -546,7 +565,8 @@ module.exports = {
                                 fileMsg({
                                     id: msg.id,
                                     wrapper: targetNode,
-                                    name: name,
+                                    avatar:avatar,
+                                    name: nickname,
                                     value: data || msg.url,
                                     filename: msg.filename,
                                     error: msg.error,
@@ -556,7 +576,8 @@ module.exports = {
                         } else {
                             videoMsg({
                                 wrapper: targetNode,
-                                name: name,
+                                avatar:avatar,
+                                name: nickname,
                                 value: data || msg.url,
                                 length: msg.length,
                                 id: msg.id,
